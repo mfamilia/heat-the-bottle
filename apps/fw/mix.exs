@@ -41,7 +41,7 @@ defmodule Fw.MixProject do
       {:nerves, "~> 1.0", runtime: false},
       {:shoehorn, "~> 0.2"},
       {:nerves_network, "~> 0.3"},
-      {:elixir_ale, "~> 1.0"}
+      {:nerves_firmware_ssh, "~> 0.3", except: :test}
     ] ++ deps(@target)
   end
 

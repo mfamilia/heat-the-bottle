@@ -6,10 +6,17 @@ defmodule Core.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: Core.Worker.start_link(arg)
-      # {Core.Worker, arg},
+      worker(Core.Sensors.Temperature.Server, []),
+      worker(Core.Sensors.Power.Server, []),
+      worker(Core.Actuators.Power.Server, []),
+      worker(Core.Actuators.LowHeat.Server, []),
+      worker(Core.Actuators.HighHeat.Server, []),
+      worker(Core.Actuators.Motor.Server, []),
+      {NervesNTP, [sync_on_start: true]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1,4 +1,4 @@
-defmodule Core.Temperature.Impl do
+defmodule Core.Sensors.Temperature.Impl do
   @moduledoc false
   alias ElixirALE.SPI
   alias Core.Convert
@@ -20,8 +20,7 @@ defmodule Core.Temperature.Impl do
   defp transmission_payload(), do: <<0x01, 0x80, 0x00>>
 
   defp spi_transfer(pid, payload) do
-    pid
-    |> SPI.transfer(payload)
+    SPI.transfer(pid, payload)
   end
 
   defp spi_read(<<_::size(14), counts::size(10)>>) do

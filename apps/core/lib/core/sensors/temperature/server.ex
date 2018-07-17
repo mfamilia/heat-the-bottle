@@ -1,4 +1,4 @@
-defmodule Core.Temperature.Server do
+defmodule Core.Sensors.Temperature.Server do
   @moduledoc false
 
   use GenServer
@@ -9,10 +9,10 @@ defmodule Core.Temperature.Server do
   end
 
   def init(_) do
-    {:ok, %{}}
+    {:ok, %{pid: Impl.new()}}
   end
 
-  def handle_call(:read, _from, _state) do
-    {:reply, Impl.read(), %{}}
-    end
+  def handle_call(:read, _from, state) do
+    {:reply, Impl.read_temperature(state.pid), %{}}
+  end
 end

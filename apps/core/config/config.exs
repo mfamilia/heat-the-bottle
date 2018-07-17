@@ -9,8 +9,15 @@ use Mix.Config
 # 3rd-party users, it should be done in your "mix.exs" file.
 
 # You can configure your application as:
-#
-#     config :core, key: :value
+
+config :core,
+  pin_value_switch_delay: 200,
+  power_write: 15,
+  power_read: 21,
+  motor_write: 4,
+  low_heat_write: 14,
+  high_heat_write: 18
+
 #
 # and access this configuration in your application as:
 #
