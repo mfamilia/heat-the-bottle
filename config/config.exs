@@ -9,6 +9,7 @@ use Mix.Config
 # back to each application for organization purposes.
 #import_config "../apps/ui/config/config.exs"
 import_config "../apps/core/config/config.exs"
+import_config "../apps/api/config/config.exs"
 import_config "../apps/fw/config/config.exs"
 
 # Sample configuration (overrides the imported configuration above):
