@@ -9,12 +9,27 @@ use Mix.Config
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
 
+config :nerves_firmware_ssh,
+  authorized_keys: [
+    File.read!(Path.join(System.user_home!, ".ssh/id_rsa.pub"))
+  ]
+
 # Use shoehorn to start the main application. See the shoehorn
 # docs for separating out critical OTP applications such as those
 # involved with firmware updates.
 config :shoehorn,
-  init: [:nerves_runtime, :nerves_network],
+  init: [:nerves_runtime, :nerves_init_gadget],
   app: Mix.Project.config()[:app]
+
+config :logger, backends: [RingLogger]
+
+config :nerves_init_gadget,
+  ifname: "wlan0",
+  address_method: :dhcp,
+  mdns_domain: "nerves.local",
+  node_name: nil,
+  node_host: :mdns_domain,
+  ssh_console_port: 22
 
 # For WiFi, set regulatory domain to avoid restrictive default
 config :nerves_network,
@@ -24,10 +39,7 @@ config :nerves_network, :default,
   wlan0: [
     ssid: System.get_env("NERVES_NETWORK_SSID"),
     psk: System.get_env("NERVES_NETWORK_PSK"),
-    key_mgmt: String.to_atom(System.get_env("NERVES_NETWORK_MGMT"))
-  ],
-  eth0: [
-    ipv4_address_method: :dhcp
+    key_mgmt: "WPA-PSK"
   ]
 
 # Import target specific config. This must remain at the bottom

@@ -40,8 +40,8 @@ defmodule Fw.MixProject do
     [
       {:nerves, "~> 1.0", runtime: false},
       {:shoehorn, "~> 0.2"},
-      {:nerves_network, "~> 0.3"},
-      {:nerves_firmware_ssh, "~> 0.3", except: :test}
+      {:core, in_umbrella: true},
+      {:api, in_umbrella: true}
     ] ++ deps(@target)
   end
 
@@ -50,7 +50,9 @@ defmodule Fw.MixProject do
 
   defp deps(target) do
     [
-      {:nerves_runtime, "~> 0.4"}
+      {:nerves_runtime, "~> 0.4"},
+      {:nerves_init_gadget, "~> 0.3"},
+      {:elixir_ale, "~> 1.0"}
     ] ++ system(target)
   end
 
