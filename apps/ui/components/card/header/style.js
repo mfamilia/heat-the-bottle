@@ -5,6 +5,7 @@ import {
   infoCardHeader,
   primaryCardHeader,
   roseCardHeader,
+  offCardHeader,
 } from '../../../style'
 
 const style = {
@@ -115,7 +116,14 @@ const style = {
     '&:not($cardHeaderIcon)': {
       ...roseCardHeader
     }
+  },
+  offCardHeader: {
+    color: '#FFFFFF',
+    '&:not($cardHeaderIcon)': {
+      ...offCardHeader
+    }
   }
+
 }
 
 export default style

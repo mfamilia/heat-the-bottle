@@ -1,14 +1,18 @@
 import ChartistGraph from 'react-chartist'
-import { dailySalesChart } from '../../charts'
+import { temperatureChart } from '../../charts'
 
-const Chart = () => {
+const Chart = ({ temperatures }) => {
+  if (!temperatures) { return null }
+
+  const chart = temperatureChart(temperatures)
+
   return (
     <ChartistGraph
       className='ct-chart'
-      data={dailySalesChart.data}
+      data={chart.data}
       type='Line'
-      options={dailySalesChart.options}
-      listener={dailySalesChart.animation}
+      options={chart.options}
+      listener={chart.animation}
     />
   )
 }

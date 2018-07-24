@@ -53,17 +53,31 @@ const styles = theme => ({
   }
 });
 
+const options = ['device_off', 'low_heat', 'high_heat']
+
 class FloatingActionButtonZoom extends React.Component {
   state = {
     value: 0,
   };
 
+  static getDerivedStateFromProps = (props, state) => {
+    return { value: props.selected }
+  }
+
   handleChange = (event, value) => {
+    const { onClick } = this.props
+
     this.setState({ value });
+
+    onClick(options[value])
   };
 
-  handleChangeIndex = index => {
-    this.setState({ value: index });
+  handleChangeIndex = value => {
+    const { onClick } = this.props
+
+    this.setState({ value });
+
+    onClick(options[value])
   };
 
   render() {
@@ -89,7 +103,7 @@ class FloatingActionButtonZoom extends React.Component {
           </Tabs>
         </AppBar>
         {
-          this.state.value !== 0 &&
+          false &&
           <SwipeableViews
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={this.state.value}
@@ -97,6 +111,8 @@ class FloatingActionButtonZoom extends React.Component {
           >
             <TabContainer dir={theme.direction}></TabContainer>
             <TabContainer dir={theme.direction}>
+              { false &&
+
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="age-native-helper">Auto turn off</InputLabel>
                 <NativeSelect
@@ -111,8 +127,11 @@ class FloatingActionButtonZoom extends React.Component {
                 </NativeSelect>
                 <FormHelperText>after reaching goal tempearture</FormHelperText>
               </FormControl>
+              }
             </TabContainer>
             <TabContainer dir={theme.direction}>
+              { false &&
+
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="age-native-helper">Auto turn off</InputLabel>
                 <NativeSelect
@@ -127,6 +146,7 @@ class FloatingActionButtonZoom extends React.Component {
                 </NativeSelect>
                 <FormHelperText>after reaching goal tempearture</FormHelperText>
               </FormControl>
+              }
             </TabContainer>
           </SwipeableViews>
         }
