@@ -13,10 +13,10 @@ defmodule Core.Actuators.Motor.Server do
   end
 
   def handle_call(:turn_on, _from, state) do
-    {:reply, Impl.turn_on(state.pid), %{}}
+    {:reply, Impl.turn_on(state.pid), state}
   end
 
   def handle_call(:turn_off, _from, state) do
-    {:reply, Impl.turn_off(state.pid), %{}}
+    {:reply, Impl.turn_off(state.pid), state}
   end
 end

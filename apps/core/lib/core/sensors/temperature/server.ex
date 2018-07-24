@@ -13,6 +13,6 @@ defmodule Core.Sensors.Temperature.Server do
   end
 
   def handle_call(:read, _from, state) do
-    {:reply, Impl.read_temperature(state.pid), %{}}
+    {:reply, Impl.read_temperature(state.pid), state}
   end
 end

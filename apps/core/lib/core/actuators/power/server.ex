@@ -13,6 +13,6 @@ defmodule Core.Actuators.Power.Server do
   end
 
   def handle_call(:cycle, _from, state) do
-    {:reply, Impl.cycle(state.pid), %{}}
+    {:reply, Impl.cycle(state.pid), state}
   end
 end

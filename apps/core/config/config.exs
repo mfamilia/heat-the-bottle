@@ -11,10 +11,11 @@ use Mix.Config
 # You can configure your application as:
 
 config :core,
+  max_temperature_readings: 120,
   pin_value_switch_delay: 200,
   power_write: 15,
   power_read: 21,
-  motor_write: 4,
+  motor_read_write: 4,
   low_heat_write: 14,
   high_heat_write: 18
 
@@ -35,3 +36,7 @@ config :core,
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :persistent_storage, tables: [
+  data: [path: "/root/data"]
+]

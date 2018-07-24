@@ -1,6 +1,6 @@
 defmodule Core.Sensors.Power do
 
-  @spec read() :: boolean()
+  @spec read() :: integer()
   def read() do
     GenServer.call(:power_sensor, :read)
   end

@@ -1,6 +1,6 @@
 defmodule Core.Actuators.HighHeat do
 
-  @spec cycle() :: no_return()
+  @spec cycle() :: atom()
   def cycle() do
     GenServer.call(:high_heat_actuator, :cycle)
   end

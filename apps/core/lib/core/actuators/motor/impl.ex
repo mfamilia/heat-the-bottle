@@ -6,7 +6,7 @@ defmodule Core.Actuators.Motor.Impl do
   @off 0
 
   def new() do
-    gpio_num = Application.get_env(:core, :motor_write)
+    gpio_num = Application.get_env(:core, :motor_read_write)
 
     {:ok, pid} = GPIO.start_link(gpio_num, :output)
 

@@ -10,13 +10,16 @@ defmodule Core.Application do
 
     # List all child processes to be supervised
     children = [
+      {NervesNTP, [sync_on_start: true]},
+      supervisor(Registry, [:duplicate, :messages]),
       worker(Core.Sensors.Temperature.Server, []),
       worker(Core.Sensors.Power.Server, []),
       worker(Core.Actuators.Power.Server, []),
       worker(Core.Actuators.LowHeat.Server, []),
       worker(Core.Actuators.HighHeat.Server, []),
       worker(Core.Actuators.Motor.Server, []),
-      {NervesNTP, [sync_on_start: true]}
+      worker(Core.Collectors.Temperature.Server, []),
+      worker(Core.Jobs.ReadTemperature, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

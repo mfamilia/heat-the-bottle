@@ -1,6 +1,6 @@
 defmodule Core.Actuators.Power do
 
-  @spec cycle() :: no_return()
+  @spec cycle() :: atom()
   def cycle() do
     GenServer.call(:power_actuator, :cycle)
   end

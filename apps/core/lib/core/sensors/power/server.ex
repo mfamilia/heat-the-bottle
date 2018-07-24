@@ -13,6 +13,6 @@ defmodule Core.Sensors.Power.Server do
   end
 
   def handle_call(:read, _from, state) do
-    {:reply, Impl.read_state(state.pid), %{}}
+    {:reply, Impl.read_state(state.pid), state}
   end
 end

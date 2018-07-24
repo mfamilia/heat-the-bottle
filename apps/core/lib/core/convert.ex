@@ -5,6 +5,6 @@ defmodule Core.Convert do
   end
 
   def from_voltage_to_temperature(voltage) do
-
+    voltage * -21.72 + 89.03
   end
 end

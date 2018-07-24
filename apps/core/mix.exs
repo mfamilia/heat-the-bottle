@@ -27,6 +27,7 @@ defmodule Core.MixProject do
   defp deps do
     [
       {:elixir_ale, "~> 1.0"},
+      {:persistent_storage, git: "https://github.com/cellulose/persistent_storage.git", tag: "v1.10.1"},
       {:nerves_ntp, git: "https://github.com/visciang/nerves_ntp.git", tag: "0.2.1"}
     ]
   end
